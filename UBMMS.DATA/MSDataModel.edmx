@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ubmmsModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="sstem_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="documents">
+          <Key>
+            <PropertyRef Name="tracking_id" />
+          </Key>
+          <Property Name="tracking_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="document_type" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="id_project_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="sstem_user" Type="varchar" MaxLength="255" />
+          <Property Name="finalized" Type="bit" />
+          <Property Name="referred" Type="bit" />
+          <Property Name="id_team" Type="int" />
+        </EntityType>
+        <EntityType Name="log_documents">
+          <Key>
+            <PropertyRef Name="tracking_id" />
+          </Key>
+          <Property Name="tracking_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="op_code" Type="varchar" MaxLength="100" />
+          <Property Name="op_description" Type="varchar" MaxLength="255" />
+          <Property Name="op_date" Type="datetime" Precision="0" />
+          <Property Name="op_user" Type="varchar" MaxLength="255" />
+          <Property Name="op_user_team" Type="int" />
+          <Property Name="action_time" Type="time" Precision="3" />
+        </EntityType>
+        <EntityType Name="project_codes">
+          <Key>
+            <PropertyRef Name="project_code" />
+          </Key>
+          <Property Name="project_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="project_name" Type="varchar" MaxLength="155" Nullable="false" />
+          <Property Name="id_customer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="teams">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="team_name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="id_team" Type="int" Nullable="false" />
+          <Property Name="sstem_user" Type="varchar" MaxLength="10" />
+          <Property Name="sstem_bat" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="fk_customer">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="project_codes" Type="Self.project_codes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_codes">
+              <PropertyRef Name="id_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_id_team">
+          <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
+          <End Role="documents" Type="Self.documents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="documents">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_project_code">
+          <End Role="project_codes" Type="Self.project_codes" Multiplicity="1" />
+          <End Role="documents" Type="Self.documents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project_codes">
+              <PropertyRef Name="project_code" />
+            </Principal>
+            <Dependent Role="documents">
+              <PropertyRef Name="id_project_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_team">
+          <End Role="teams" Type="Self.teams" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ubmmsModelStoreContainer">
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="ubmms" store:Type="Tables" />
+          <EntitySet Name="documents" EntityType="Self.documents" Schema="ubmms" store:Type="Tables" />
+          <EntitySet Name="log_documents" EntityType="Self.log_documents" Schema="ubmms" store:Type="Tables" />
+          <EntitySet Name="project_codes" EntityType="Self.project_codes" Schema="ubmms" store:Type="Tables" />
+          <EntitySet Name="teams" EntityType="Self.teams" Schema="ubmms" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="ubmms" store:Type="Tables" />
+          <AssociationSet Name="fk_customer" Association="Self.fk_customer">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="project_codes" EntitySet="project_codes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_id_team" Association="Self.fk_id_team">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="documents" EntitySet="documents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_project_code" Association="Self.fk_project_code">
+            <End Role="project_codes" EntitySet="project_codes" />
+            <End Role="documents" EntitySet="documents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_team" Association="Self.fk_team">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ubmmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sstem_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="project_codes" Relationship="Self.fk_customer" FromRole="customers" ToRole="project_codes" />
+        </EntityType>
+        <EntityType Name="document">
+          <Key>
+            <PropertyRef Name="tracking_id" />
+          </Key>
+          <Property Name="tracking_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="document_type" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_project_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sstem_user" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="finalized" Type="Boolean" />
+          <Property Name="referred" Type="Boolean" />
+          <Property Name="id_team" Type="Int32" />
+          <NavigationProperty Name="team" Relationship="Self.fk_id_team" FromRole="documents" ToRole="teams" />
+          <NavigationProperty Name="project_codes" Relationship="Self.fk_project_code" FromRole="documents" ToRole="project_codes" />
+        </EntityType>
+        <EntityType Name="log_documents">
+          <Key>
+            <PropertyRef Name="tracking_id" />
+          </Key>
+          <Property Name="tracking_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="op_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="op_description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="op_date" Type="DateTime" />
+          <Property Name="op_user" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="op_user_team" Type="Int32" />
+          <Property Name="action_time" Type="Time" />
+        </EntityType>
+        <EntityType Name="project_codes">
+          <Key>
+            <PropertyRef Name="project_code" />
+          </Key>
+          <Property Name="project_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="project_name" Type="String" MaxLength="155" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_customer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="customer" Relationship="Self.fk_customer" FromRole="project_codes" ToRole="customers" />
+          <NavigationProperty Name="documents" Relationship="Self.fk_project_code" FromRole="project_codes" ToRole="documents" />
+        </EntityType>
+        <EntityType Name="team">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="team_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="documents" Relationship="Self.fk_id_team" FromRole="teams" ToRole="documents" />
+          <NavigationProperty Name="users" Relationship="Self.fk_team" FromRole="teams" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_team" Type="Int32" Nullable="false" />
+          <Property Name="sstem_user" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sstem_bat" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="team" Relationship="Self.fk_team" FromRole="users" ToRole="teams" />
+        </EntityType>
+        <Association Name="fk_customer">
+          <End Role="customers" Type="Self.customer" Multiplicity="1" />
+          <End Role="project_codes" Type="Self.project_codes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_codes">
+              <PropertyRef Name="id_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_id_team">
+          <End Role="teams" Type="Self.team" Multiplicity="0..1" />
+          <End Role="documents" Type="Self.document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="documents">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_project_code">
+          <End Role="project_codes" Type="Self.project_codes" Multiplicity="1" />
+          <End Role="documents" Type="Self.document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project_codes">
+              <PropertyRef Name="project_code" />
+            </Principal>
+            <Dependent Role="documents">
+              <PropertyRef Name="id_project_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_team">
+          <End Role="teams" Type="Self.team" Multiplicity="1" />
+          <End Role="users" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ubmmsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="documents" EntityType="Self.document" />
+          <EntitySet Name="log_documents" EntityType="Self.log_documents" />
+          <EntitySet Name="project_codes" EntityType="Self.project_codes" />
+          <EntitySet Name="teams" EntityType="Self.team" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="fk_customer" Association="Self.fk_customer">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="project_codes" EntitySet="project_codes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_id_team" Association="Self.fk_id_team">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="documents" EntitySet="documents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_project_code" Association="Self.fk_project_code">
+            <End Role="project_codes" EntitySet="project_codes" />
+            <End Role="documents" EntitySet="documents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_team" Association="Self.fk_team">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ubmmsModelStoreContainer" CdmEntityContainer="ubmmsEntities">
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="ubmmsModel.customer">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="sstem_code" ColumnName="sstem_code" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documents">
+            <EntityTypeMapping TypeName="ubmmsModel.document">
+              <MappingFragment StoreEntitySet="documents">
+                <ScalarProperty Name="tracking_id" ColumnName="tracking_id" />
+                <ScalarProperty Name="document_type" ColumnName="document_type" />
+                <ScalarProperty Name="id_project_code" ColumnName="id_project_code" />
+                <ScalarProperty Name="sstem_user" ColumnName="sstem_user" />
+                <ScalarProperty Name="finalized" ColumnName="finalized" />
+                <ScalarProperty Name="referred" ColumnName="referred" />
+                <ScalarProperty Name="id_team" ColumnName="id_team" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="log_documents">
+            <EntityTypeMapping TypeName="ubmmsModel.log_documents">
+              <MappingFragment StoreEntitySet="log_documents">
+                <ScalarProperty Name="tracking_id" ColumnName="tracking_id" />
+                <ScalarProperty Name="op_code" ColumnName="op_code" />
+                <ScalarProperty Name="op_description" ColumnName="op_description" />
+                <ScalarProperty Name="op_date" ColumnName="op_date" />
+                <ScalarProperty Name="op_user" ColumnName="op_user" />
+                <ScalarProperty Name="op_user_team" ColumnName="op_user_team" />
+                <ScalarProperty Name="action_time" ColumnName="action_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project_codes">
+            <EntityTypeMapping TypeName="ubmmsModel.project_codes">
+              <MappingFragment StoreEntitySet="project_codes">
+                <ScalarProperty Name="project_code" ColumnName="project_code" />
+                <ScalarProperty Name="project_name" ColumnName="project_name" />
+                <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teams">
+            <EntityTypeMapping TypeName="ubmmsModel.team">
+              <MappingFragment StoreEntitySet="teams">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="team_name" ColumnName="team_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="ubmmsModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="id_team" ColumnName="id_team" />
+                <ScalarProperty Name="sstem_user" ColumnName="sstem_user" />
+                <ScalarProperty Name="sstem_bat" ColumnName="sstem_bat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

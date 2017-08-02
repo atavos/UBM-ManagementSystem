@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{73F7B6D8-B1FF-448B-8DC4-6D6232941B59}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UBMMS</RootNamespace>
+    <AssemblyName>UBMMS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>\\sbrdocs\Documentos\UBMMS\Deploy\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>\\sbrdocs\Documentos\UBMMS\Deploy\</InstallUrl>
+    <UpdateUrl>\\sbrdocs\Documentos\UBMMS\Deploy\</UpdateUrl>
+    <MinimumRequiredVersion>1.0.0.22</MinimumRequiredVersion>
+    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>widgets.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F9EFEB6B4052E88C33B29237D2BDA82461D00E4B</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>UBMMS_1_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.9.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.9\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SautinSoft.PdfVision">
+      <HintPath>..\..\..\..\..\Desktop\Development\PDF Vision .Net Trial (5.0.4.1)\SautinSoft.PdfVision.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.ChartView, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.PivotGrid, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadDock, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Office2010Silver, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="TelerikCommon, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="TelerikData, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmAddInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddInformation.Designer.cs">
+      <DependentUpon>frmAddInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddUser.Designer.cs">
+      <DependentUpon>frmAddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAZL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAZL.Designer.cs">
+      <DependentUpon>frmAZL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmClassify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClassify.Designer.cs">
+      <DependentUpon>frmClassify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomer.Designer.cs">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomersDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomersDashboard.Designer.cs">
+      <DependentUpon>frmCustomersDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocsReceived.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocsReceived.Designer.cs">
+      <DependentUpon>frmDocsReceived.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocumentDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocumentDetail.Designer.cs">
+      <DependentUpon>frmDocumentDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocumentManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocumentManager.Designer.cs">
+      <DependentUpon>frmDocumentManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoadedDocuments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoadedDocuments.Designer.cs">
+      <DependentUpon>frmLoadedDocuments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageUsers.Designer.cs">
+      <DependentUpon>frmManageUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPortal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPortal.Designer.cs">
+      <DependentUpon>frmPortal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProcess.Designer.cs">
+      <DependentUpon>frmProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProductivity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductivity.Designer.cs">
+      <DependentUpon>frmProductivity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReAssign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReAssign.Designer.cs">
+      <DependentUpon>frmReAssign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRefer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRefer.Designer.cs">
+      <DependentUpon>frmRefer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReferFinalized.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReferFinalized.Designer.cs">
+      <DependentUpon>frmReferFinalized.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportProductivityCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportProductivityCustomer.Designer.cs">
+      <DependentUpon>frmReportProductivityCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUploadDocuments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUploadDocuments.Designer.cs">
+      <DependentUpon>frmUploadDocuments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserInfo.Designer.cs">
+      <DependentUpon>frmUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OnBoarding\frmGroupInvoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OnBoarding\frmGroupInvoices.Designer.cs">
+      <DependentUpon>frmGroupInvoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OnBoarding\frmTariffAllocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OnBoarding\frmTariffAllocation.Designer.cs">
+      <DependentUpon>frmTariffAllocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RadItemDragDropManager.cs" />
+    <Compile Include="Reports\frmOutstandingInvoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmOutstandingInvoices.Designer.cs">
+      <DependentUpon>frmOutstandingInvoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmStampedInvoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmStampedInvoices.Designer.cs">
+      <DependentUpon>frmStampedInvoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\frmCustomerManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\frmCustomerManagement.Designer.cs">
+      <DependentUpon>frmCustomerManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\frmCustomerManagementOLD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\frmCustomerManagementOLD.Designer.cs">
+      <DependentUpon>frmCustomerManagementOLD.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmAddInformation.resx">
+      <DependentUpon>frmAddInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddUser.resx">
+      <DependentUpon>frmAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAZL.resx">
+      <DependentUpon>frmAZL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClassify.resx">
+      <DependentUpon>frmClassify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomer.resx">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomersDashboard.resx">
+      <DependentUpon>frmCustomersDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDocsReceived.resx">
+      <DependentUpon>frmDocsReceived.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDocumentDetail.resx">
+      <DependentUpon>frmDocumentDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDocumentManager.resx">
+      <DependentUpon>frmDocumentManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoadedDocuments.resx">
+      <DependentUpon>frmLoadedDocuments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageUsers.resx">
+      <DependentUpon>frmManageUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPortal.resx">
+      <DependentUpon>frmPortal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProcess.resx">
+      <DependentUpon>frmProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductivity.resx">
+      <DependentUpon>frmProductivity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReAssign.resx">
+      <DependentUpon>frmReAssign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRefer.resx">
+      <DependentUpon>frmRefer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReferFinalized.resx">
+      <DependentUpon>frmReferFinalized.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportProductivityCustomer.resx">
+      <DependentUpon>frmReportProductivityCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUploadDocuments.resx">
+      <DependentUpon>frmUploadDocuments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserInfo.resx">
+      <DependentUpon>frmUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OnBoarding\frmGroupInvoices.resx">
+      <DependentUpon>frmGroupInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OnBoarding\frmTariffAllocation.resx">
+      <DependentUpon>frmTariffAllocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Reports\frmOutstandingInvoices.resx">
+      <DependentUpon>frmOutstandingInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\frmStampedInvoices.resx">
+      <DependentUpon>frmStampedInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\frmCustomerManagement.resx">
+      <DependentUpon>frmCustomerManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\frmCustomerManagementOLD.resx">
+      <DependentUpon>frmCustomerManagementOLD.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="UBMMS_1_TemporaryKey.pfx" />
+    <None Include="UBMMS_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UBMMS.Controller\UBMMS.Controller.csproj">
+      <Project>{aa92fc8c-e56c-4780-8523-d47faee1dd8c}</Project>
+      <Name>UBMMS.Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UBMMS.DAL\UBMMS.DAL.csproj">
+      <Project>{1de4c9fc-6d92-42ad-b9c0-4951a5479f25}</Project>
+      <Name>UBMMS.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reindeer.ico" />
+    <Content Include="widgets.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
